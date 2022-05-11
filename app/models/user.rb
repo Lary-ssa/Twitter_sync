@@ -17,7 +17,8 @@ class User < ApplicationRecord
                   next if TwitterMessage.exists?(timeline_id: user_timeline.id)
                   TwitterMessage.create(user: user, timeline_id: user_timeline.id, data: user_timeline.attrs)
                 end
-              rescue 
+              rescue => e
+                puts e.message  
                 puts "#{user.username} - cant sync"
               end
             end

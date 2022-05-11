@@ -1,24 +1,5 @@
-<h1>Lista de Usuários e suas Mensagens</h1>
-<% @users.each do |user| %>
-<h3><%= user.username %></h3> 
-<table class="table">
-<head>
-<tr>
-<th>id</th>
-<th>message</th>
-<th>views</th>
-</tr>
-</head>
-<tbody>
-<% @users.each do |user| %>
-    <% user.twitter_messages.each do |twitter_message| %>
-        <tr>
-        <td><%= twitter_message.timeline_id %></td>
-        <td><%= twitter_message.data['text'] %></td>
-        <td><%= twitter_message.data['retweet_count'] %></td>
-        </tr>
-    <% end %>
-<% end %>
-</tbody>
-</table>
+<h1>Lista de Tarefas</h1>
+<%= turbo_stream_from "twitter_messages" %>
+<%= turbo_frame_tag "twitter_messages" do %>
+    <%= render @twitter_messages %>
 <% end %>

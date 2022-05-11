@@ -1,5 +1,5 @@
 class TwitterMessagesController < ApplicationController
   def index
-    @users = User.all
+    @twitter_messages= TwitterMessage.order(created_at: :desc)
   end
 end
